@@ -10,7 +10,7 @@
           .addClass("alert")
           .addClass("alert-danger")
           .attr("role", "alert")
-          .text("couldn't get tv-show list")
+          .text("no favorite added")
           .css({
             position: "absolute",
             bottom: 0,
