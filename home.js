@@ -76,7 +76,11 @@
       cardBody.append(
         $("<h5></h5>").addClass("card-title").text(tvShow.original_name)
       );
-      cardBody.append($("<p></p>").addClass("card-text").text(tvShow.overview));
+      cardBody.append(
+        $("<p></p>")
+          .addClass("card-text")
+          .text(`vote average: ${tvShow.vote_average}`)
+      );
       link.append(cardBody);
       card.append(link);
       cardWrapper.append(card);
