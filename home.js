@@ -25,7 +25,7 @@
         .attr("href", `/individual.html?id=${tvShow.id}`);
 
       const cardWrapper = $("<div></div>")
-        .addClass("col-6")
+        .addClass("col")
         .addClass("col-sm-3")
         .addClass("pt-2")
         .addClass("text-center");
