@@ -96,8 +96,7 @@
 
   try {
     const data = await $.ajax({
-      url:
-        "https://api.themoviedb.org/3/tv/popular?api_key=1360011d3dfe8ec8bdc1196202d544b8&language=en-US&page=1",
+      url: `https://api.themoviedb.org/3/tv/popular?api_key=${config.API_KEY}&language=en-US&page=1`,
     });
     displayViews(data);
   } catch (error) {
