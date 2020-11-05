@@ -35,7 +35,7 @@
       );
       return;
     }
-    data.results.forEach((tvShow) => {
+    data.results.slice(0, 12).forEach((tvShow) => {
       const link = $("<a>")
         .addClass("text-black-50")
         .addClass("text-decoration-none")
