@@ -107,8 +107,7 @@
 
   const callApi = async () => {
     $("#tv-shows").empty();
-    let url =
-      "https://api.themoviedb.org/3/discover/tv?api_key=1360011d3dfe8ec8bdc1196202d544b8&language=en-US&page=1";
+    let url = `https://api.themoviedb.org/3/discover/tv?api_key=${config.API_KEY}&language=en-US&page=1`;
     if (sortBy) url += sortBy;
     if (year) url += year;
     try {
