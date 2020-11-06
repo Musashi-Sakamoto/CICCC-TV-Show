@@ -79,12 +79,7 @@ $(function() {
         div.append(status);
        
         data.seasonsAll.forEach((season) => {
-
-            let poster_path = `https://image.tmdb.org/t/p/original${season.poster_path}`;
-            if(season.poster_path == null){
-                poster_path = './images/no-image.png';
-            }
-
+   
             const cardWrapper = $("<div></div>").addClass("text-center");
 
             const card = $("<div></div>")
@@ -92,6 +87,8 @@ $(function() {
             .addClass("position-relative")
             .width("18rem");
 
+            const poster_path = season.poster_path == null ? './images/no-image.png' : `https://image.tmdb.org/t/p/original${season.poster_path}`;
+ 
             card.append(
                 $("<img>")
                   .addClass("card-img-top")
