@@ -64,12 +64,14 @@
           );
         }
       });
+      const backdrop_path = tvShow.backdrop_path == null ? './images/img-placeholder.png' : `https://image.tmdb.org/t/p/original${tvShow.backdrop_path}`;
+ 
       card.append(
         $("<img>")
           .addClass("card-img-top")
           .attr(
             "src",
-            `https://image.tmdb.org/t/p/original${tvShow.backdrop_path}`
+            backdrop_path
           )
       );
       const cardBody = $("<div></div>").addClass("card-body");
