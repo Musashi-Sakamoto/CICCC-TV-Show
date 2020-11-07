@@ -1,4 +1,5 @@
 body {
+
     margin: 0;
     padding: 0;
     background: #ccc;
@@ -27,7 +28,7 @@ body {
   }
    
   .nav a:hover {
-    background-color: orange;
+    background-color: #ffa500;
   }
    
   .nav a.active {
@@ -66,7 +67,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     font-size: 14px;
-    background-color: #f4f4f4;
+    background-color: #fffaee;
     align-items: start;
     min-height: 100vh;
   }
@@ -172,6 +173,9 @@ body {
   
   .heart {
     color: #2f2f2f;
+  }
+  .axis{
+    margin:0 10%;
   }
   
   @media screen and (min-width: 24.375em) {

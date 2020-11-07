@@ -1,7 +1,24 @@
 (async () => {
+  let sortBy = "";
+  let year = "";
   const getFavArray = () => {
     return JSON.parse(localStorage.getItem("favorites")) || [];
   };
+
+  $("#year").on("input", async (e) => {
+    console.log(e);
+    year = /^\d{4}$/.test($(e.currentTarget).val())
+      ? `&first_air_date_year=${$(e.currentTarget).val()}`
+      : "";
+    await callApi();
+  });
+
+  $("#sort").on("change", async (e) => {
+    sortBy = $(e.currentTarget).val()
+      ? `&sort_by=${$(e.currentTarget).val()}`
+      : "";
+    await callApi();
+  });
 
   const displayViews = (data) => {
     if (!data) {
@@ -18,7 +35,7 @@
       );
       return;
     }
-    data.results.forEach((tvShow) => {
+    data.results.slice(0, 12).forEach((tvShow) => {
       const link = $("<a>")
         .addClass("text-black-50")
         .addClass("text-decoration-none")
@@ -64,8 +81,9 @@
           );
         }
       });
+
       const backdrop_path = tvShow.backdrop_path == null ? './images/img-placeholder.png' : `https://image.tmdb.org/t/p/original${tvShow.backdrop_path}`;
- 
+     
       card.append(
         $("<img>")
           .addClass("card-img-top")
@@ -90,12 +108,20 @@
     });
   };
 
-  try {
-    const data = await $.ajax({
-      url: `https://api.themoviedb.org/3/tv/popular?api_key=${config.API_KEY}&language=en-US&page=1`,
-    });
-    displayViews(data);
-  } catch (error) {
-    displayViews(null);
-  }
+  const callApi = async () => {
+    $("#tv-shows").empty();
+    let url = `https://api.themoviedb.org/3/discover/tv?api_key=${config.API_KEY}&language=en-US&page=1`;
+    if (sortBy) url += sortBy;
+    if (year) url += year;
+    try {
+      const data = await $.ajax({
+        url,
+      });
+      displayViews(data);
+    } catch (error) {
+      displayViews(null);
+    }
+  };
+
+  await callApi();
 })();
