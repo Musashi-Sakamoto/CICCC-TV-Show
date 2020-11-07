@@ -78,11 +78,13 @@
       cardBody.append(
         $("<h5></h5>").addClass("card-title").text(tvShow.original_name)
       );
-      cardBody.append(
-        $("<p></p>")
-          .addClass("card-text")
-          .text(`vote average: ${tvShow.vote_average}`)
-      );
+      const progress = $("<div></div>").addClass("progress");
+      const progressBar = $("<div></div>").addClass("progress-bar").attr("role", "progressbar").css("width", `${tvShow.vote_average*10}%`)
+      const textAberage =  $("<p></p>").addClass("card-text").text(`vote average: ${tvShow.vote_average}`)
+      progress.append(progressBar)
+      cardBody.append(progress)
+      progressBar.append(textAberage)
+
       link.append(cardBody);
       card.append(link);
       cardWrapper.append(card);
