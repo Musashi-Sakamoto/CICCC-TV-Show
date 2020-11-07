@@ -2,7 +2,7 @@ $(function() {
     const stringQuery = document.location.search;
     const paramsURL = new URLSearchParams(stringQuery);
     const tv_id = paramsURL.get('id');
-    //  const tv_id = '82856'
+
     
     const getData = async() =>{
         try{
@@ -28,11 +28,9 @@ $(function() {
             seasons: data.number_of_seasons, 
             overview: data.overview,
             homepage: data.homepage,
-            creater: data.created_by[0].name,
-            year: data.first_air_date.substring(0,4),
+            year: data.first_air_date != null ? ` (${data.first_air_date.substring(0,4)})` : '',
             bgImg: data.backdrop_path,
-            genres: data.genres[0].name,
-            language: data.languages[0],
+            original_language: data.original_language,
             status: data.status,
             type: data.type,
             vote_average: data.vote_average,
@@ -47,17 +45,18 @@ $(function() {
     const displayData = (data) =>{
         console.log(data)
 
-        const img = $('<img>').attr('src',`https://image.tmdb.org/t/p/original${data.poster_path}`);
+        const poster_path = data.poster_path != null ? `https://image.tmdb.org/t/p/original${data.poster_path}` : './images/no-image.png'
+        const img = $('<img>').attr('src',poster_path);
         $('.tvShowImage').append(img);
         $('.bg').css('background-image',`url(https://image.tmdb.org/t/p/original${data.bgImg})`)
-        const year = $('<span></span>').text(` (${data.year})`);
+        const year = $('<span></span>').text(data.year);
         const name = $('<h1></h1>').text(data.name).append(year);
         $('.tvShowInfo').append(name);
         const seasons = $('<p class="season"></p>').text('season '+data.seasons);
         $('.tvShowInfo').append(seasons);
 
-        const genres = $('<p></p>').text(`genre : ${data.genres}`);
-        $('.tvShowInfo').append(genres);
+        const original_language = $('<p></p>').text(`language : ${data.original_language}`);
+        $('.tvShowInfo').append(original_language);
 
         const overview = $('<p></p>').text(data.overview);
         $('.tvShowInfo').append(overview);
